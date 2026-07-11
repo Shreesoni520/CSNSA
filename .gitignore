@@ -1,0 +1,7 @@
+config.php
+csnsa.sql
+uploads/
+admin/uploads/
+*.log
+.DS_Store
+Thumbs.db

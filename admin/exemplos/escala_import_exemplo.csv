@@ -1,0 +1,4 @@
+numero_mecanografico,dia,turno_codigo,tipo_dia
+12345,1,M,turno
+12345,2,,folga
+12345,3,M,turno

@@ -1,0 +1,162 @@
+/* CSNSA — readable alerts in light and dark mode */
+
+.csnsa-alert {
+  border-left-width: 4px;
+  border-left-style: solid;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.csnsa-alert-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding-right: 1.5rem;
+}
+
+.csnsa-alert-icon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  font-size: 1.15rem;
+  line-height: 1;
+  opacity: 0.95;
+}
+
+.csnsa-alert-text {
+  flex: 1;
+  line-height: 1.5;
+}
+
+.csnsa-alert strong,
+.csnsa-alert b {
+  font-weight: 700;
+}
+
+/* ---- Light mode ---- */
+body.light .csnsa-alert.alert-success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+  border-left-color: #198754;
+}
+
+body.light .csnsa-alert.alert-danger {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+  border-left-color: #dc3545;
+}
+
+body.light .csnsa-alert.alert-warning {
+  color: #664d03;
+  background-color: #fff3cd;
+  border-color: #ffecb5;
+  border-left-color: #ffc107;
+}
+
+body.light .csnsa-alert.alert-info {
+  color: #055160;
+  background-color: #cff4fc;
+  border-color: #b6effb;
+  border-left-color: #0dcaf0;
+}
+
+body.light .csnsa-alert.alert-primary {
+  color: #084298;
+  background-color: #cfe2ff;
+  border-color: #b6d4fe;
+  border-left-color: #0d6efd;
+}
+
+body.light .csnsa-alert strong,
+body.light .csnsa-alert b {
+  color: inherit;
+}
+
+body.light .csnsa-alert .alert-link {
+  color: #0a58ca;
+  font-weight: 600;
+}
+
+/* ---- Dark mode ---- */
+body.dark .alert strong,
+body.dark .alert b,
+body.dark .csnsa-alert strong,
+body.dark .csnsa-alert b {
+  color: inherit !important;
+}
+
+body.dark .csnsa-alert.alert-success {
+  color: #b8f0d3;
+  background-color: #1a3328;
+  border-color: #2d5a45;
+  border-left-color: #3ad29f;
+}
+
+body.dark .csnsa-alert.alert-danger {
+  color: #f5c2c7;
+  background-color: #3b1f24;
+  border-color: #5c2d35;
+  border-left-color: #dc3545;
+}
+
+body.dark .csnsa-alert.alert-warning {
+  color: #ffe08a;
+  background-color: #3d3219;
+  border-color: #5c4a1f;
+  border-left-color: #ffc107;
+}
+
+body.dark .csnsa-alert.alert-info {
+  color: #9eeaf9;
+  background-color: #1a2f36;
+  border-color: #2a4a54;
+  border-left-color: #17a2b8;
+}
+
+body.dark .csnsa-alert.alert-primary {
+  color: #b6d4fe;
+  background-color: #1a2744;
+  border-color: #2a4070;
+  border-left-color: #1b68ff;
+}
+
+body.dark .csnsa-alert .alert-link {
+  color: #8ec5ff;
+  font-weight: 600;
+}
+
+body.dark .csnsa-alert .close {
+  color: inherit;
+  text-shadow: none;
+  opacity: 0.75;
+}
+
+body.dark .csnsa-alert .close:hover {
+  opacity: 1;
+}
+
+/* Non-csnsa alerts on dark pages still need the strong fix */
+body.dark .alert-warning {
+  color: #ffe08a;
+  background-color: #3d3219;
+  border-color: #5c4a1f;
+}
+
+body.dark .alert-success {
+  color: #b8f0d3;
+  background-color: #1a3328;
+  border-color: #2d5a45;
+}
+
+body.dark .alert-danger {
+  color: #f5c2c7;
+  background-color: #3b1f24;
+  border-color: #5c2d35;
+}
+
+body.dark .alert-info {
+  color: #9eeaf9;
+  background-color: #1a2f36;
+  border-color: #2a4a54;
+}

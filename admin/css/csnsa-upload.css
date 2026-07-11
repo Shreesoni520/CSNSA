@@ -1,0 +1,411 @@
+/* CSNSA — unified file upload controls (light + dark) */
+
+.csnsa-upload {
+  --upload-accent: #1b68ff;
+  --upload-accent-soft: rgba(27, 104, 255, 0.1);
+  --upload-border: #d8dee9;
+  --upload-bg: #f8fafc;
+  --upload-bg-hover: #eef4ff;
+  --upload-text: #334155;
+  --upload-muted: #64748b;
+  --upload-filename: #0f172a;
+  --upload-radius: 0.65rem;
+}
+
+body.dark .csnsa-upload {
+  --upload-accent: #6ea8ff;
+  --upload-accent-soft: rgba(110, 168, 255, 0.14);
+  --upload-border: #454d57;
+  --upload-bg: #2b3038;
+  --upload-bg-hover: #323945;
+  --upload-text: #d8dde6;
+  --upload-muted: #9aa3b2;
+  --upload-filename: #edf0f4;
+}
+
+.csnsa-upload__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.csnsa-upload__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.55rem 1rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--upload-accent);
+  background: var(--upload-accent-soft);
+  color: var(--upload-accent);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.csnsa-upload__btn:hover {
+  background: var(--upload-accent);
+  color: #fff;
+  box-shadow: 0 0.25rem 0.75rem rgba(27, 104, 255, 0.22);
+}
+
+body.dark .csnsa-upload__btn:hover {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.35);
+}
+
+.csnsa-upload__btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(27, 104, 255, 0.25);
+}
+
+.csnsa-upload__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.csnsa-upload__meta {
+  margin-top: 0.55rem;
+}
+
+.csnsa-upload__filename {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--upload-filename);
+  word-break: break-word;
+}
+
+.csnsa-upload__hint {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  color: var(--upload-muted);
+  line-height: 1.4;
+}
+
+.csnsa-upload--has-file .csnsa-upload__filename {
+  color: var(--upload-accent);
+}
+
+/* Document / anexo — dropzone style */
+.csnsa-upload--document,
+.csnsa-upload--import {
+  position: relative;
+}
+
+.csnsa-upload--document .csnsa-upload__zone,
+.csnsa-upload--import .csnsa-upload__zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.65rem;
+  padding: 1.15rem 1rem;
+  border: 1.5px dashed var(--upload-border);
+  border-radius: var(--upload-radius);
+  background: var(--upload-bg);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.csnsa-upload--document:hover .csnsa-upload__zone,
+.csnsa-upload--import:hover .csnsa-upload__zone,
+.csnsa-upload--document.csnsa-upload--drag .csnsa-upload__zone,
+.csnsa-upload--import.csnsa-upload--drag .csnsa-upload__zone {
+  border-color: var(--upload-accent);
+  background: var(--upload-bg-hover);
+}
+
+.csnsa-upload--has-file .csnsa-upload__zone {
+  border-color: var(--upload-accent);
+  background: var(--upload-accent-soft);
+}
+
+.csnsa-upload__zone-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--upload-accent-soft);
+  color: var(--upload-accent);
+  font-size: 1.25rem;
+}
+
+.csnsa-upload__zone-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--upload-filename);
+  margin: 0;
+}
+
+.csnsa-upload__zone-text {
+  font-size: 0.8rem;
+  color: var(--upload-muted);
+  margin: 0;
+  max-width: 22rem;
+}
+
+.csnsa-upload--document .csnsa-upload__meta,
+.csnsa-upload--import .csnsa-upload__meta {
+  text-align: center;
+  margin-top: 0.65rem;
+}
+
+.csnsa-upload--import .csnsa-upload__zone {
+  padding: 1.35rem 1rem;
+}
+
+/* Avatar / photo — compact pill */
+.csnsa-upload--avatar .csnsa-upload__btn {
+  border-radius: 999px;
+  border-style: dashed;
+  background: var(--upload-bg);
+  border-color: var(--upload-border);
+  color: var(--upload-text);
+  font-weight: 600;
+}
+
+.csnsa-upload--avatar .csnsa-upload__btn:hover {
+  border-color: var(--upload-accent);
+  background: var(--upload-accent-soft);
+  color: var(--upload-accent);
+  box-shadow: none;
+}
+
+.csnsa-upload--avatar .csnsa-upload__meta {
+  margin-top: 0.45rem;
+}
+
+/* Inline — one row: button + filename (Escala, forms) */
+.csnsa-upload--inline .csnsa-upload__inline-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 0.85rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--upload-border);
+  border-radius: var(--upload-radius);
+  background: var(--upload-bg);
+}
+
+.csnsa-upload--inline:hover .csnsa-upload__inline-row {
+  border-color: var(--upload-accent);
+}
+
+.csnsa-upload--inline.csnsa-upload--has-file .csnsa-upload__inline-row {
+  border-color: var(--upload-accent);
+  background: var(--upload-accent-soft);
+}
+
+.csnsa-upload__filename--inline {
+  flex: 1 1 8rem;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--upload-muted);
+}
+
+.csnsa-upload--has-file .csnsa-upload__filename--inline {
+  color: var(--upload-filename);
+  font-weight: 600;
+}
+
+.csnsa-upload__hint--inline {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--upload-muted);
+  line-height: 1.4;
+}
+
+.csnsa-upload--inline .csnsa-upload__btn {
+  flex-shrink: 0;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8125rem;
+}
+
+/* Inline row (import + submit button) — deprecated on Escala; kept for other pages */
+.csnsa-upload-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.csnsa-upload-row .csnsa-upload {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+.csnsa-upload-row__action {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-end;
+}
+
+.csnsa-upload-row__action .btn {
+  min-height: 2.75rem;
+  white-space: nowrap;
+}
+
+/* Escala Mensal — compact import bar */
+.escala-import-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.escala-import-bar__upload {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
+.escala-import-bar__action {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0;
+}
+
+.escala-import-bar__action .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  min-height: 2.35rem;
+}
+
+.csnsa-upload--escala-import .csnsa-upload__inline-row {
+  padding: 0.4rem 0.65rem;
+  gap: 0.5rem 0.75rem;
+}
+
+.csnsa-upload--escala-import .csnsa-upload__btn {
+  padding: 0.38rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.csnsa-upload--escala-import .csnsa-upload__filename--inline {
+  font-size: 0.8rem;
+}
+
+.escala-import-hint {
+  margin-top: 0.45rem;
+  font-size: 0.75rem;
+  color: var(--upload-muted);
+  line-height: 1.35;
+}
+
+.escala-import-context {
+  font-size: 0.8125rem;
+  color: var(--upload-muted);
+  padding-top: 1.65rem;
+}
+
+@media (max-width: 767.98px) {
+  .escala-import-context {
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .escala-import-bar {
+    align-items: center;
+  }
+
+  .escala-import-bar__action {
+    align-items: center;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .escala-import-bar__action {
+    width: 100%;
+  }
+
+  .escala-import-bar__action .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .csnsa-upload-row__action {
+    width: 100%;
+  }
+
+  .csnsa-upload-row__action .btn {
+    width: 100%;
+  }
+}
+
+/* Funcionário foto layout */
+.funcionario-foto-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.funcionario-foto-preview {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: var(--upload-bg, #f3f4f6);
+  border: 2px solid var(--upload-border, #e5e7eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.funcionario-foto-preview img,
+.funcionario-foto-preview .avatar-img,
+.funcionario-foto-preview .avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.funcionario-foto-preview .avatar-placeholder {
+  font-size: 0.95rem;
+}
+
+body.dark .funcionario-foto-preview {
+  background: #2b3038;
+  border-color: #454d57;
+}
+
+.profile-photo-upload {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.profile-photo-upload .csnsa-upload {
+  display: inline-block;
+}

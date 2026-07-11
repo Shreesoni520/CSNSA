@@ -1,0 +1,101 @@
+/* CSNSA — light mode contrast fixes (template app-light.css uses near-white table headers) */
+
+body.light .table thead th,
+body.light table.dataTable thead > tr > th,
+body.light table.dataTable thead > tr > td {
+  color: #343a40 !important;
+  font-weight: 600;
+  background-color: #f1f3f5;
+  border-bottom: 2px solid #dee2e6 !important;
+}
+
+body.light .table tbody td,
+body.light table.dataTable tbody td {
+  color: #495057;
+}
+
+body.light table.dataTable thead .sorting:before,
+body.light table.dataTable thead .sorting:after,
+body.light table.dataTable thead .sorting_asc:before,
+body.light table.dataTable thead .sorting_asc:after,
+body.light table.dataTable thead .sorting_desc:before,
+body.light table.dataTable thead .sorting_desc:after {
+  opacity: 0.65;
+}
+
+body.light div.dataTables_wrapper div.dataTables_length label,
+body.light div.dataTables_wrapper div.dataTables_filter label,
+body.light div.dataTables_wrapper div.dataTables_info,
+body.light div.dataTables_wrapper div.dataTables_paginate {
+  color: #495057;
+}
+
+body.light div.dataTables_wrapper div.dataTables_filter input {
+  color: #343a40;
+  background-color: #fff;
+  border-color: #ced4da;
+}
+
+body.light .text-muted,
+body.light small.text-muted {
+  color: #6c757d !important;
+}
+
+body.light .card-title,
+body.light .form-label,
+body.light label {
+  color: #343a40;
+}
+
+body.light .nav-tabs .nav-link:not(.active) {
+  color: #6c757d;
+}
+
+body.light .nav-heading,
+body.light .text-muted.nav-heading {
+  color: #868e96 !important;
+}
+
+body.light .card-header {
+  color: #343a40;
+}
+
+body.light .table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f8f9fb;
+}
+
+body.light .dataTables_empty {
+  color: #6c757d !important;
+}
+
+/* Dark mode — general readability */
+body.dark .card {
+  color: #dee2e6;
+}
+
+body.dark .card-title,
+body.dark .card-header {
+  color: #e9ecef;
+}
+
+body.dark .form-label,
+body.dark label {
+  color: #ced4da;
+}
+
+body.dark .text-muted,
+body.dark small.text-muted {
+  color: #9aa3b2 !important;
+}
+
+body.dark .table tbody td,
+body.dark table.dataTable tbody td {
+  color: #ced4da;
+}
+
+body.dark .table thead th,
+body.dark table.dataTable thead > tr > th {
+  color: #e9ecef !important;
+  background-color: #343a40;
+  border-bottom-color: #495057 !important;
+}

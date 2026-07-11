@@ -1,0 +1,83 @@
+/* Table row action buttons (Turnos-style) */
+.form-button-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: nowrap;
+}
+
+.form-button-action > .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.125rem;
+  height: 2rem;
+  padding: 0 0.45rem;
+  margin: 0;
+  border: 0 !important;
+  border-radius: 0.25rem;
+  font-size: 0.95rem;
+  line-height: 1;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  opacity: 0.92;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.form-button-action > .btn.btn-lg {
+  min-width: 2.25rem;
+  height: 2.125rem;
+  font-size: 1rem;
+}
+
+.form-button-action > .btn:hover,
+.form-button-action > .btn:focus {
+  opacity: 1;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  transform: translateY(-1px);
+}
+
+.form-button-action > .btn.btn-info {
+  color: #fff !important;
+  background-color: #17a2b8 !important;
+}
+
+.form-button-action > .btn.btn-info:hover,
+.form-button-action > .btn.btn-info:focus {
+  color: #fff !important;
+  background-color: #138496 !important;
+}
+
+.form-button-action > .btn.btn-primary {
+  color: #fff !important;
+  background-color: #1b68ff !important;
+}
+
+.form-button-action > .btn.btn-primary:hover,
+.form-button-action > .btn.btn-primary:focus {
+  color: #fff !important;
+  background-color: #0056f0 !important;
+}
+
+.form-button-action > .btn.btn-success {
+  color: #fff !important;
+  background-color: #3ad29f !important;
+}
+
+.form-button-action > .btn.btn-success:hover,
+.form-button-action > .btn.btn-success:focus {
+  color: #fff !important;
+  background-color: #28b183 !important;
+}
+
+.form-button-action > .btn.btn-danger {
+  color: #fff !important;
+  background-color: #dc3545 !important;
+}
+
+.form-button-action > .btn.btn-danger:hover,
+.form-button-action > .btn.btn-danger:focus {
+  color: #fff !important;
+  background-color: #c82333 !important;
+}
