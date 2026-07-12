@@ -1,184 +1,65 @@
 # CSNSA
 
-A **Human Resources and Attendance Management** system for teams and organizations. Web-based admin panel for employees, time tracking, shifts, schedules, absences, hour banks, and reports.
+CSNSA is a Human Resources and Attendance Management system. It is built for teams and organizations that need one place to manage employees, track working hours, plan shifts, handle absences, and produce reports.
 
 ---
 
-## Features
+## What is it for?
 
-| Module | Description |
-|--------|-------------|
-| **Dashboard** | Overview of attendance, statistics, and notifications |
-| **Employees** | Registration, editing, archiving, and export (PDF / CSV) |
-| **Teams** | Department and team management |
-| **Time Tracking** | View and manage clock-in / clock-out records |
-| **Time Clock Devices** | Integration with biometric devices (iClock protocol) |
-| **Shifts** | Define schedules and assign them to employees |
-| **Monthly Schedule** | Shift planning with list or grid view; CSV import |
-| **Absences** | Requests, justifications, and absence reports |
-| **Hour Bank** | Track worked hours, overtime, and balances |
-| **Hour Reports** | Detailed reports by period |
-| **Users** | Account management and role-based permissions |
+The system helps HR staff, managers, and administrators keep accurate records of who works when, how long they work, and when they are away. Instead of using spreadsheets or separate tools for attendance, schedules, and employee data, everything is handled through a single web-based admin panel.
 
-### Additional capabilities
-
-- Light / dark theme
-- Granular permissions per module
-- Employee photo and justification document uploads
-- Automatic database migrations on startup
-- REST API for time clocks and manual punches
+It is especially useful for workplaces that use physical time clocks or biometric devices, because clock-in and clock-out data can be collected automatically and viewed alongside the rest of the employee information.
 
 ---
 
-## Requirements
+## What does it do?
 
-- **PHP** 7.4+ (8.x recommended)
-- **MySQL** or **MariaDB**
-- **Apache** (e.g. XAMPP, WAMP, LAMP)
-- PHP extensions: `mysqli`, `json`, `mbstring`, `gd` (image uploads)
+**Dashboard** — Gives a quick overview of the workforce: how many employees are active, who is currently working, who is on break, and who is not working. It also shows notifications and a snapshot of attendance for the day.
 
----
+**Employees** — Stores employee records including personal details, photos, and work-related information. Employees can be added, edited, archived, and exported when needed.
 
-## Installation
+**Teams and departments** — Organizes staff into teams or departments so the company structure is clear and easy to manage.
 
-### 1. Clone the repository
+**Time tracking** — Records and displays clock-in and clock-out times so you can see when each person started and finished work.
 
-```bash
-git clone https://github.com/Shreesoni520/CSNSA.git
-cd CSNSA
-```
+**Time clock devices** — Connects with biometric time clocks so punches from physical devices are saved in the system without manual entry.
 
-Place the folder in your web server directory (e.g. `C:\xampp\htdocs\CSNSA`).
+**Shifts** — Lets you define work schedules and assign them to employees so everyone knows their expected hours.
 
-### 2. Configure the application
+**Monthly schedule** — Plans shifts across the month using a list or grid view. Schedules can also be imported in bulk when planning ahead.
 
-```bash
-copy config.example.php config.php
-```
+**Absences** — Handles absence requests, justifications, and related documents. Reports can be generated to review time off over a period.
 
-Edit `config.php` with your database credentials:
+**Hour bank** — Tracks worked hours, overtime, and balances so extra time worked or time owed can be monitored over time.
 
-```php
-$servername = "localhost";
-$username   = "root";
-$password   = "";
-$dbname     = "csnsa";
-```
+**Hour reports** — Produces detailed reports of hours worked for chosen date ranges, useful for payroll and compliance.
 
-### 3. Set up the database
+**Users and permissions** — Manages who can log in and what each person is allowed to see or change. Access can be limited per module so different roles only see what they need.
 
-1. Open **phpMyAdmin** or your MySQL client
-2. Create a database named `csnsa`
-3. Import the `csnsa.sql` file (available locally after setup; not included in the repo for security)
-
-> If the database does not exist yet, some pages will ask you to import `csnsa.sql` before they work.
-
-### 4. Folder permissions
-
-Make sure the web server can write to these folders:
-
-```
-uploads/
-uploads/funcionarios/
-uploads/users/
-admin/uploads/
-admin/uploads/ausencias/
-```
-
-### 5. Access the system
-
-Open in your browser:
-
-```
-http://localhost/CSNSA/
-```
-
-You will be redirected to the admin panel.
-
-### 6. First user
-
-On a **fresh install** (no users in the database), you can create the administrator account at:
-
-```
-http://localhost/CSNSA/admin/index.php?csnsa=auth-register
-```
-
-After the first registration, public sign-up is automatically disabled.
+**Appearance** — Supports light and dark theme for comfortable use in different environments.
 
 ---
 
-## Advanced configuration
+## How does it work?
 
-### Time clocks / biometric API
+When someone opens the site, they are taken to the admin panel. Only registered users with the right permissions can access the system. On a brand-new setup, the first person to register becomes the administrator; after that, open registration is turned off so only authorized users can be added.
 
-In `config.php`:
+The system runs on a web server with a database behind it. All employee data, attendance records, schedules, and settings are stored in the database and shown through the admin pages.
 
-```php
-$ponto_api_secret = '';                    // Secret token for the API (optional)
-$ponto_auto_registar_dispositivos = true;  // Auto-register devices
-```
+When an employee clocks in or out on a connected time clock device, that punch is sent to the system and stored with the employee’s record. Managers can also review and manage time entries from the admin panel. The system uses the configured timezone so all times are consistent.
 
-### API endpoints
+Shifts and monthly schedules define when people are expected to work. Attendance records are compared against those plans so you can see who is present, late, absent, or working outside their usual hours.
 
-| Endpoint | Description |
-|----------|-------------|
-| `api/punch.php` | Manual punch (JSON) |
-| `api/iclock/cdata.php` | iClock protocol — data upload |
-| `api/iclock/getrequest.php` | iClock protocol — device requests |
+Absence requests and supporting documents can be uploaded and kept with each employee’s file. The hour bank and reporting tools use the attendance and schedule data to calculate totals, overtime, and balances.
 
-### Timezone
+User accounts control access to each area. An administrator can decide which modules each user can view or edit, so sensitive information stays limited to the right people.
 
-The system uses `Europe/Lisbon` by default (set in `config.php`).
+The application can update its own database structure when needed, so small improvements to how data is stored can be applied without manual database work in most cases.
 
----
-
-## Project structure
-
-```
-CSNSA/
-├── index.php              # Redirects to admin
-├── config.php             # Local configuration (not versioned)
-├── config.example.php     # Configuration template
-├── admin/                 # Admin panel
-│   ├── index.php          # Router (?csnsa=page)
-│   ├── includes/          # Auth, helpers, layouts
-│   ├── funcoes/           # Business logic
-│   ├── css/ & js/         # UI assets
-│   └── uploads/           # Absence documents (local)
-├── api/                   # Time clock API
-├── fpdf/                  # PDF generation
-└── uploads/               # Employee and user photos (local)
-```
-
----
-
-## Security
-
-The following files/folders **should not** be committed to the repository:
-
-- `config.php` — database credentials
-- `csnsa.sql` — database dump
-- `uploads/` and `admin/uploads/` — personal data and documents
-
-A **private** repository is recommended for this type of application.
-
----
-
-## Tech stack
-
-- **Backend:** PHP, MySQL/MariaDB
-- **Frontend:** Bootstrap 4, jQuery, DataTables, Feather Icons
-- **PDF:** FPDF
-- **Devices:** ZKTeco iClock protocol
-
----
-
-## License
-
-Internal / proprietary project. The included FPDF library is under the [FPDF license](fpdf/license.txt).
+Employee photos and absence documents are stored on the server in dedicated upload areas. Configuration such as database connection and time clock settings is kept in a local settings file that is not shared publicly, to protect credentials and internal setup details.
 
 ---
 
 ## Author
 
-**Shreesoni520** — [GitHub](https://github.com/Shreesoni520)
+Shreesoni520
