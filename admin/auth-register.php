@@ -12,7 +12,6 @@ if (!registration_is_open()) {
 }
 
 $error = '';
-$success = '';
 $username = '';
 $email = '';
 $firstName = '';
@@ -64,8 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
 
             if (register_user($userData, 'admin')) {
-                $success = 'Conta de administrador criada. Já podes iniciar sessão.';
-                $username = $email = $firstName = $lastName = $telefone = $endereco = '';
+                header('Location: ' . admin_url('auth-login', [
+                    'message' => 'Conta de administrador criada. Já podes iniciar sessão.',
+                ]));
+                exit;
             } else {
                 $error = 'Não foi possível criar a conta. O nome de utilizador, email ou telefone pode já estar registado.';
             }
@@ -81,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>CSNSA - Criar administrador</title>
+    <title>CSNSA - Configuração inicial</title>
     <link rel="stylesheet" href="css/simplebar.css">
     <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/feather.css">
@@ -99,13 +100,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="<?php echo htmlspecialchars(admin_url('auth-register')); ?>">
               <?php $brandClass = 'brand-md'; include __DIR__ . '/includes/brand-logo.php'; ?>
             </a>
-            <h2 class="my-3">Criar conta de administrador</h2>
-            <p class="text-muted small mb-0">Só disponível enquanto não existir nenhum administrador no sistema.</p>
+            <h2 class="my-3">Configuração inicial</h2>
+            <p class="text-muted small mb-0">Primeiro acesso: cria a conta de administrador. Esta página só aparece uma vez.</p>
           </div>
             <?php if ($error): ?>
             <?php render_alert($error, 'danger', false); ?>
-            <?php elseif ($success): ?>
-            <?php render_alert($success, 'success', false); ?>
             <?php endif; ?>
           <div class="form-group">
             <label for="username">Nome de utilizador</label>
@@ -165,9 +164,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
           </div>
           <button class="btn btn-lg btn-primary btn-block" type="submit">Criar administrador</button>
-          <div class="mt-3 text-left">
-            <a href="<?php echo htmlspecialchars(admin_url('auth-login')); ?>">Já tenho conta</a>
-          </div>
           <p class="mt-5 mb-3 text-muted text-center">© 2026</p>
         </form>
       </div>

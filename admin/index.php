@@ -57,7 +57,9 @@ if ($page === 'auth-register' && !registration_is_open()) {
 }
 
 if (!is_logged_in() && !in_array($page, $authPages, true)) {
-    header('Location: ' . admin_url('auth-login'));
+    // First visit with no accounts → one-time admin setup.
+    $destino = registration_is_open() ? 'auth-register' : 'auth-login';
+    header('Location: ' . admin_url($destino));
     exit;
 }
 

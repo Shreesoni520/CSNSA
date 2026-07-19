@@ -12,6 +12,12 @@ $notice = $_GET['message'] ?? '';
 $redirect = auth_safe_redirect($_GET['redirect'] ?? $_POST['redirect'] ?? 'inicio');
 $registrationOpen = registration_is_open();
 
+// First visit: no accounts yet → send to one-time admin setup.
+if ($registrationOpen && $_SERVER['REQUEST_METHOD'] !== 'POST' && $notice === '') {
+    header('Location: ' . admin_url('auth-register'));
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = trim($_POST['login'] ?? '');
     $password = $_POST['password'] ?? '';
@@ -83,11 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
           <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
           <div class="mt-4">
-            <?php if ($registrationOpen): ?>
-              <a href="<?php echo htmlspecialchars(admin_url('auth-register')); ?>" class="btn btn-outline-primary btn-sm">Criar conta de administrador</a>
-            <?php else: ?>
-              <span class="text-muted small d-block">Já existe uma conta no sistema. Peça acesso ao administrador.</span>
-            <?php endif; ?>
+            <span class="text-muted small d-block">Já existe uma conta no sistema. Peça acesso ao administrador.</span>
           </div>
           <p class="mt-5 mb-3 text-muted">© 2026</p>
         </form>

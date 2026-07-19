@@ -159,9 +159,22 @@ function is_logged_in(): bool
     return !empty($_SESSION['user']);
 }
 
+function count_utilizadores(): int
+{
+    global $conn;
+    $sql = 'SELECT COUNT(*) AS total FROM utilizadores';
+    $result = $conn->query($sql);
+    if (!$result) {
+        return 0;
+    }
+    $row = $result->fetch_assoc();
+    return intval($row['total'] ?? 0);
+}
+
 function registration_is_open(): bool
 {
-    return count_users() === 0;
+    // First-time setup only: open while both account tables are empty.
+    return count_users() === 0 && count_utilizadores() === 0;
 }
 
 function require_admin(): void
