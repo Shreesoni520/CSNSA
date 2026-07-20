@@ -99,3 +99,36 @@ body.dark table.dataTable thead > tr > th {
   background-color: #343a40;
   border-bottom-color: #495057 !important;
 }
+
+/* Brand logo — Nossa Senhora Auxiliadora */
+img.navbar-brand-img.csnsa-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  background: transparent;
+}
+
+img.navbar-brand-img.csnsa-logo.brand-sm {
+  width: 3rem;
+  height: auto;
+}
+
+img.navbar-brand-img.csnsa-logo.brand-md {
+  width: 6rem;
+  height: auto;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
+}
+
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-sidebar .navbar-brand,
+.sidebar .navbar-brand {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}

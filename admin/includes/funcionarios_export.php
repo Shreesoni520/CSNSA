@@ -296,19 +296,30 @@ class CSNSAExportPdfBase extends FPDF
 
     public function Header(): void
     {
+        $headerH = 26;
         $this->SetFillColor(...$this->brandBlue);
-        $this->Rect(0, 0, $this->GetPageWidth(), 24, 'F');
+        $this->Rect(0, 0, $this->GetPageWidth(), $headerH, 'F');
 
-        $this->SetXY(12, 7);
+        $logoPath = dirname(__DIR__) . '/assets/logo-fatima-header.jpg';
+        if (!is_file($logoPath)) {
+            $logoPath = dirname(__DIR__) . '/assets/logo-fatima.jpg';
+        }
+
+        $logoW = 11;
+        $logoX = 10;
+        $logoY = 3.5;
+        if (is_file($logoPath)) {
+            // Height keeps aspect; width fixed so it fits the blue bar cleanly.
+            $this->Image($logoPath, $logoX, $logoY, $logoW);
+        }
+
+        $this->SetXY(12, 8);
         $this->SetTextColor(255, 255, 255);
-        $this->SetFont('Arial', 'B', 16);
-        $this->Cell(30, 8, export_pdf_text('CSNSA'), 0, 0, 'L');
-
         $this->SetFont('Arial', '', 9);
-        $this->Cell(0, 8, export_pdf_text('Gestao de RH e Assiduidade'), 0, 1, 'R');
+        $this->Cell(0, 8, export_pdf_text('Centro Social de Nossa Senhora Auxiliadora'), 0, 1, 'R');
 
         $contentWidth = $this->bodyBlockWidth();
-        $this->SetXY(($this->GetPageWidth() - $contentWidth) / 2, 30);
+        $this->SetXY(($this->GetPageWidth() - $contentWidth) / 2, $headerH + 6);
         $this->SetTextColor(...$this->brandDark);
         $this->SetFont('Arial', 'B', 14);
         $this->Cell($contentWidth, 7, export_pdf_text($this->reportTitle), 0, 1, 'C');
@@ -339,7 +350,7 @@ class CSNSAExportPdfBase extends FPDF
         $this->Line(10, $this->GetY(), $this->GetPageWidth() - 10, $this->GetY());
         $this->SetFont('Arial', 'I', 8);
         $this->SetTextColor(120, 128, 140);
-        $this->Cell(0, 8, export_pdf_text('CSNSA  |  Pagina ') . $this->PageNo() . '/{nb}', 0, 0, 'C');
+        $this->Cell(0, 8, export_pdf_text('CSNSA — Nossa Senhora Auxiliadora  |  Pagina ') . $this->PageNo() . '/{nb}', 0, 0, 'C');
     }
 
     protected function drawTableHeader(array $headers, array $widths, float $height = 8): void
